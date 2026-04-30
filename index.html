@@ -269,6 +269,56 @@ p { line-height: 1.65; color: var(--ink-soft); }
   text-transform: uppercase; color: var(--accent-deep); margin-bottom: 6px; font-weight: 600;
 }
 
+/* === Mobile Nav === */
+.nav-hamburger {
+  display: none;
+  appearance: none; border: 0; background: transparent; cursor: default;
+  padding: 8px; border-radius: 8px; margin-left: 4px;
+  flex-direction: column; gap: 5px; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.nav-hamburger:hover { background: rgba(28,26,23,0.06); }
+.nav-hamburger span {
+  display: block; width: 18px; height: 2px;
+  background: var(--ink-soft); border-radius: 2px;
+  transition: all 0.2s;
+}
+.nav-mobile-overlay {
+  position: fixed; inset: 0; z-index: 99;
+  background: rgba(28,26,23,0.2);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+.nav-mobile-dropdown {
+  position: absolute; top: 72px; left: 50%; transform: translateX(-50%);
+  width: min(340px, calc(100vw - 32px));
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 20px 40px -10px rgba(28,26,23,0.25);
+  padding: 8px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.nav-mobile-item {
+  appearance: none; border: 0; background: transparent; cursor: default;
+  font: inherit; font-size: 15px; font-weight: 500; color: var(--ink-soft);
+  padding: 12px 16px; border-radius: 12px; text-align: left;
+  display: flex; align-items: center; gap: 14px;
+  transition: color 0.15s, background 0.15s; width: 100%;
+}
+.nav-mobile-item:hover { color: var(--ink); background: rgba(28,26,23,0.05); }
+.nav-mobile-item.active { color: var(--ink); background: rgba(196,106,60,0.10); }
+.nav-mobile-num {
+  font-family: var(--font-mono); font-size: 11px; color: var(--accent-deep);
+  letter-spacing: 0.06em; width: 24px; flex-shrink: 0;
+}
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
 /* === Responsive === */
 @media (max-width: 720px) {
   .shell, .shell-narrow { padding: 0 20px; }
@@ -477,30 +527,46 @@ p { line-height: 1.65; color: var(--ink-soft); }
       { id: "teachers", label: "Teacher Interviews",   short: "Teachers", num: "02" },
       { id: "today",    label: "School Today",         short: "Today",    num: "03" },
       { id: "numbers",  label: "By the Numbers",       short: "Numbers",  num: "04" },
-      { id: "yearbook", label: "The Yearbook",         short: "Yearbook", num: "05" },
-      { id: "letter",   label: "Letters to the Future",short: "Letters",  num: "06" },
+      { id: "letter",   label: "Letters to the Future",short: "Letters",  num: "05" },
     ];
 
     function Nav({ page, setPage }) {
+      const [mobileOpen, setMobileOpen] = React.useState(false);
+
+      const navigate = (id) => { setPage(id); setMobileOpen(false); };
+
       return (
-        <nav className="nav" role="navigation" aria-label="Primary">
-          <div className="nav-brand">
-            <div className="nav-brand-mark">H</div>
-            <span>Hoggard '26</span>
-          </div>
-          <div className="nav-links">
-            {PAGES.map((p) => (
-              <button
-                key={p.id}
-                className={"nav-link " + (page === p.id ? "active" : "")}
-                onClick={() => setPage(p.id)}
-              >
-                <span className="nav-link-full">{p.label}</span>
-                <span className="nav-link-short">{p.short}</span>
-              </button>
-            ))}
-          </div>
-        </nav>
+        <>
+          <nav className="nav" role="navigation" aria-label="Primary">
+            <div className="nav-brand">
+              <div className="nav-brand-mark">H</div>
+              <span>Hoggard '26</span>
+            </div>
+            <div className="nav-links">
+              {PAGES.map((p) => (
+                <button key={p.id} className={"nav-link " + (page === p.id ? "active" : "")} onClick={() => navigate(p.id)}>
+                  <span className="nav-link-full">{p.label}</span>
+                  <span className="nav-link-short">{p.short}</span>
+                </button>
+              ))}
+            </div>
+            <button className="nav-hamburger" aria-label={mobileOpen ? "Close menu" : "Open menu"} aria-expanded={mobileOpen} onClick={() => setMobileOpen(!mobileOpen)}>
+              <span /><span /><span />
+            </button>
+          </nav>
+          {mobileOpen && (
+            <div className="nav-mobile-overlay" onClick={() => setMobileOpen(false)}>
+              <div className="nav-mobile-dropdown" onClick={e => e.stopPropagation()}>
+                {PAGES.map((p) => (
+                  <button key={p.id} className={"nav-mobile-item " + (page === p.id ? "active" : "")} onClick={() => navigate(p.id)}>
+                    <span className="nav-mobile-num">{p.num}</span>
+                    <span>{p.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
       );
     }
 
@@ -591,7 +657,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
             </h1>
             <p className="lede" style={{ maxWidth: 640, marginTop: 28 }}>
               Hoggard High School in the spring of 2026. Its halls, its people, the things we'll forget.
-              We made a digital time capsule with six rooms inside. Wander through them in any order.
+              We made a digital time capsule with five rooms inside. Wander through them in any order.
               There's no rush, you've already waited a decade.
             </p>
             <div className="row-wrap" style={{ marginTop: 36 }}>
@@ -603,31 +669,33 @@ p { line-height: 1.65; color: var(--ink-soft); }
 
           <section className="shell" style={{ paddingTop: 60, paddingBottom: 40 }}>
             <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 28, paddingBottom: 14, borderBottom: "1px solid var(--line)" }}>
-              <Eyebrow>The six rooms</Eyebrow>
+              <Eyebrow>The five rooms</Eyebrow>
               <span style={{ flex: 1 }} />
               <span className="muted" style={{ fontFamily: "var(--font-mono)", fontSize: 11.5, letterSpacing: "0.06em" }}>click any door</span>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 22 }}>
+            <div className="rooms-grid" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 22 }}>
               {[
-                { id: "voices",   label: "Student Voices",        meta: "17 sticky notes",      tone: "warm", desc: "Anonymous notes, written by hand and posted to a wall. What we wanted you to know." },
-                { id: "teachers", label: "Teacher Interviews",     meta: "6 teachers, on camera", tone: "sage", desc: "Six teachers, on camera, answering a few of the same questions." },
-                { id: "today",    label: "School Today",           meta: "Photo gallery",         tone: "sky",  desc: "What every hallway, classroom, and corner of the building looks like." },
-                { id: "numbers",  label: "By the Numbers",         meta: "Stats & culture",       tone: "sand", desc: "Enrollment, gas prices, what's on the radio. The trivia of being alive in 2026." },
-                { id: "yearbook", label: "The Yearbook",           meta: "Quotes & superlatives", tone: "rose", desc: "Senior quotes, class superlatives, and a few signature pages." },
-                { id: "letter",   label: "Letters to the Future",  meta: "From students like us", tone: "warm", desc: "Letters written to whoever's reading, by students who were here in 2026." },
+                { id: "voices",   label: "Student Voices",        meta: "17 sticky notes",       tone: "warm", desc: "Anonymous notes, written by hand and posted to a wall. What we wanted you to know.", num: "01" },
+                { id: "teachers", label: "Teacher Interviews",     meta: "6 teachers, on camera", tone: "sage", desc: "Six teachers, on camera, answering a few of the same questions.", num: "02" },
+                { id: "today",    label: "School Today",           meta: "Photo gallery",          tone: "sky",  desc: "What every hallway, classroom, and corner of the building looks like.", num: "03" },
+                { id: "numbers",  label: "By the Numbers",         meta: "Stats & culture",        tone: "sand", desc: "Enrollment, gas prices, what's on the radio. The trivia of being alive in 2026.", num: "04" },
+                { id: "letter",   label: "Letters to the Future",  meta: "From students like us",  tone: "rose", desc: "Letters written to whoever's reading, by students who were here in 2026.", num: "05" },
               ].map((card, i) => (
                 <button
                   key={card.id}
                   onClick={() => setPage(card.id)}
-                  className="glass glass-hover"
-                  style={{ padding: 0, textAlign: "left", border: "1px solid var(--glass-border)", cursor: "default", color: "inherit", font: "inherit", display: "flex", flexDirection: "column" }}
+                  className="glass glass-hover room-card"
+                  style={{
+                    padding: 0, textAlign: "left", border: "1px solid var(--glass-border)", cursor: "default", color: "inherit", font: "inherit", display: "flex", flexDirection: "column",
+                    gridColumn: i < 3 ? "span 2" : (i === 3 ? "2 / span 2" : "4 / span 2"),
+                  }}
                 >
                   <Photo label={`room-${i + 1}.jpg`} ratio="4/3" tone={card.tone} style={{ borderRadius: 0 }} />
                   <div style={{ padding: "22px 24px 24px" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, marginBottom: 10 }}>
                       <h3 style={{ fontSize: "1.4rem", fontFamily: "var(--font-serif)", fontWeight: 500, letterSpacing: "-0.015em" }}>{card.label}</h3>
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 10.5, color: "var(--accent-deep)", letterSpacing: "0.08em" }}>Room 0{i + 1}</span>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 10.5, color: "var(--accent-deep)", letterSpacing: "0.08em" }}>Room {card.num}</span>
                     </div>
                     <p style={{ margin: 0, fontSize: 14.5, color: "var(--ink-soft)", lineHeight: 1.55 }}>{card.desc}</p>
                     <div style={{ marginTop: 18, paddingTop: 14, borderTop: "1px solid var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 12, color: "var(--ink-mute)", fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}>
@@ -638,6 +706,15 @@ p { line-height: 1.65; color: var(--ink-soft); }
                 </button>
               ))}
             </div>
+            <style>{`
+              @media (max-width: 860px) {
+                .rooms-grid { grid-template-columns: repeat(2, 1fr) !important; }
+                .room-card { grid-column: span 1 !important; }
+              }
+              @media (max-width: 480px) {
+                .rooms-grid { grid-template-columns: 1fr !important; }
+              }
+            `}</style>
           </section>
 
           <section className="shell-narrow" style={{ paddingTop: 80, paddingBottom: 40 }}>
@@ -1480,6 +1557,88 @@ p { line-height: 1.65; color: var(--ink-soft); }
       "warmth": 1.05
     }/*EDITMODE-END*/;
 
+    /* === PasswordGate === */
+
+    function PasswordGate({ children }) {
+      const KEY = "tc_auth_26";
+      const PASS = "4305blvd";
+      const [unlocked, setUnlocked] = React.useState(() => sessionStorage.getItem(KEY) === "1");
+      const [input, setInput] = React.useState("");
+      const [shake, setShake] = React.useState(false);
+
+      if (unlocked) return children;
+
+      const attempt = () => {
+        if (input === PASS) {
+          sessionStorage.setItem(KEY, "1");
+          setUnlocked(true);
+        } else {
+          setShake(true);
+          setInput("");
+          setTimeout(() => setShake(false), 600);
+        }
+      };
+
+      return (
+        <div style={{ position: "fixed", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(180deg, #faf6ee 0%, #f3ece0 60%, #ece4d4 100%)" }}>
+          <div style={{
+            padding: "48px 52px", borderRadius: 28, maxWidth: 400, width: "calc(100vw - 48px)",
+            background: "rgba(255,255,255,0.7)",
+            backdropFilter: "blur(28px) saturate(160%)",
+            WebkitBackdropFilter: "blur(28px) saturate(160%)",
+            border: "1px solid rgba(255,255,255,0.85)",
+            boxShadow: "0 1px 0 rgba(255,255,255,0.9) inset, 0 24px 60px -20px rgba(28,26,23,0.22)",
+            textAlign: "center",
+            animation: shake ? "pwShake 0.5s ease" : "none",
+          }}>
+            <div style={{
+              width: 64, height: 64, borderRadius: 18, margin: "0 auto 24px",
+              background: "linear-gradient(135deg, var(--accent), var(--accent-deep))",
+              display: "grid", placeItems: "center",
+              fontFamily: "var(--font-serif)", fontSize: 28, fontWeight: 600, color: "#fff",
+              boxShadow: "0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 20px rgba(196,106,60,0.4)",
+            }}>H</div>
+            <h1 style={{ fontSize: "1.8rem", fontFamily: "var(--font-serif)", letterSpacing: "-0.025em", marginBottom: 8 }}>Hoggard '26</h1>
+            <p style={{ fontSize: 14, color: "var(--ink-mute)", marginBottom: 32, fontFamily: "var(--font-mono)", letterSpacing: "0.02em" }}>
+              Time Capsule · Sealed April 2026
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <input
+                type="password"
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyDown={e => e.key === "Enter" && attempt()}
+                placeholder="enter password"
+                autoFocus
+                style={{
+                  width: "100%", padding: "14px 18px", borderRadius: 12,
+                  border: "1px solid var(--line-strong)",
+                  background: "rgba(255,255,255,0.8)",
+                  font: "inherit", fontSize: 15, color: "var(--ink)",
+                  outline: "none", textAlign: "center",
+                  letterSpacing: "0.08em", fontFamily: "var(--font-mono)",
+                }}
+              />
+              <button className="btn btn-primary" onClick={attempt} style={{ width: "100%", justifyContent: "center" }}>
+                Open the capsule →
+              </button>
+            </div>
+          </div>
+          <style>{`
+            @keyframes pwShake {
+              0%,100% { transform: translateX(0); }
+              20% { transform: translateX(-10px); }
+              40% { transform: translateX(10px); }
+              60% { transform: translateX(-8px); }
+              80% { transform: translateX(8px); }
+            }
+          `}</style>
+        </div>
+      );
+    }
+
+    /* === App === */
+
     function App() {
       const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
       const [page, setPage] = React.useState(() => {
@@ -1522,7 +1681,6 @@ p { line-height: 1.65; color: var(--ink-soft); }
           case "teachers": return <TeachersPage />;
           case "today":    return <TodayPage    />;
           case "numbers":  return <NumbersPage  />;
-          case "yearbook": return <YearbookPage />;
           case "letter":   return <LetterPage   />;
           default:         return <HomePage     setPage={setPage} />;
         }
@@ -1550,7 +1708,9 @@ p { line-height: 1.65; color: var(--ink-soft); }
       );
     }
 
-    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    ReactDOM.createRoot(document.getElementById("root")).render(
+      <PasswordGate><App /></PasswordGate>
+    );
   </script>
 </body>
 </html>
