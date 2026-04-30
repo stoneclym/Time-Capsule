@@ -23,16 +23,16 @@
   --line:         rgba(28, 26, 23, 0.10);
   --line-strong:  rgba(28, 26, 23, 0.22);
 
-  --accent:       #c46a3c;
-  --accent-soft:  #e8a07a;
-  --accent-deep:  #8a3d1a;
-  --hog-blue:     #4a7fbf;
-  --hog-navy:     #1f3358;
+  --accent:       #5aa4df;
+  --accent-soft:  #8bbfe4;
+  --accent-deep:  #21386c;
+  --hog-blue:     #5aa4df;
+  --hog-navy:     #21386c;
 
   --glass-blur: 22px;
   --glass-fill:        rgba(255, 255, 255, 0.55);
   --glass-fill-strong: rgba(255, 255, 255, 0.75);
-  --glass-fill-tinted: rgba(255, 246, 230, 0.65);
+  --glass-fill-tinted: rgba(230, 241, 252, 0.65);
   --glass-border:        rgba(255, 255, 255, 0.85);
   --glass-border-soft:   rgba(28, 26, 23, 0.08);
   --glass-shadow:        0 1px 0 rgba(255,255,255,0.7) inset, 0 12px 30px -12px rgba(28,26,23,0.18), 0 4px 10px -4px rgba(28,26,23,0.10);
@@ -61,9 +61,9 @@ html, body {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(ellipse 70% 50% at 15% 5%, rgba(232, 160, 122, 0.18), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 90% 25%, rgba(74, 127, 191, 0.10), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(196, 106, 60, 0.10), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 15% 5%, rgba(90, 164, 223, 0.15), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 25%, rgba(33, 56, 108, 0.10), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(90, 164, 223, 0.08), transparent 70%),
     linear-gradient(180deg, #faf6ee 0%, #f3ece0 60%, #ece4d4 100%);
   background-attachment: fixed;
 }
@@ -99,7 +99,7 @@ body::before {
   background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 50%);
   pointer-events: none;
 }
-.glass-tinted  { background: var(--glass-fill-tinted); border-color: rgba(232, 160, 122, 0.4); }
+.glass-tinted  { background: var(--glass-fill-tinted); border-color: rgba(139, 191, 228, 0.4); }
 .glass-strong  { background: var(--glass-fill-strong); }
 .glass-hover:hover {
   transform: translateY(-3px);
@@ -151,7 +151,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
 .nav-brand-mark {
   width: 26px; height: 26px; border-radius: 8px;
   background: linear-gradient(135deg, var(--accent), var(--accent-deep));
-  box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset, 0 2px 6px rgba(196,106,60,0.4);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.4) inset, 0 2px 6px rgba(90,164,223,0.4);
   display: grid; place-items: center;
   font-family: var(--font-serif); font-size: 13px; font-weight: 600; color: #fff;
 }
@@ -163,7 +163,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
   transition: color 0.2s, background 0.2s;
 }
 .nav-link:hover { color: var(--ink); background: rgba(28,26,23,0.05); }
-.nav-link.active { color: var(--ink); background: rgba(196,106,60,0.12); box-shadow: 0 0 0 1px rgba(196,106,60,0.28) inset; }
+.nav-link.active { color: var(--ink); background: rgba(90,164,223,0.12); box-shadow: 0 0 0 1px rgba(90,164,223,0.28) inset; }
 
 /* Nav label swap */
 .nav-link-short { display: none; }
@@ -234,8 +234,8 @@ p { line-height: 1.65; color: var(--ink-soft); }
 }
 .footer-seal {
   display: inline-block; margin-bottom: 18px;
-  padding: 8px 16px; border: 1px solid rgba(196,106,60,0.3); border-radius: 999px;
-  background: rgba(196,106,60,0.08); color: var(--accent-deep);
+  padding: 8px 16px; border: 1px solid rgba(90,164,223,0.3); border-radius: 999px;
+  background: rgba(90,164,223,0.08); color: var(--accent-deep);
   font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
 }
 
@@ -253,10 +253,10 @@ p { line-height: 1.65; color: var(--ink-soft); }
 .tag {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 5px 12px; border-radius: 999px;
-  background: rgba(196,106,60,0.10); border: 1px solid rgba(196,106,60,0.25);
+  background: rgba(90,164,223,0.10); border: 1px solid rgba(90,164,223,0.25);
   font-size: 11.5px; font-weight: 500; letter-spacing: 0.04em; color: var(--accent-deep);
 }
-.tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px rgba(196,106,60,0.5); }
+.tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px rgba(90,164,223,0.5); }
 
 /* === Content slot === */
 .slot {
@@ -309,7 +309,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
   transition: color 0.15s, background 0.15s; width: 100%;
 }
 .nav-mobile-item:hover { color: var(--ink); background: rgba(28,26,23,0.05); }
-.nav-mobile-item.active { color: var(--ink); background: rgba(196,106,60,0.10); }
+.nav-mobile-item.active { color: var(--ink); background: rgba(90,164,223,0.10); }
 .nav-mobile-num {
   font-family: var(--font-mono); font-size: 11px; color: var(--accent-deep);
   letter-spacing: 0.06em; width: 24px; flex-shrink: 0;
@@ -653,7 +653,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
               <span>Sealed April 2026 · For 2035</span>
             </div>
             <h1 className="display" style={{ maxWidth: "16ch" }}>
-              A small <em>house</em><br />built to wait ten years.
+              We were <em>here</em>.<br />Now it's your turn.
             </h1>
             <p className="lede" style={{ maxWidth: 640, marginTop: 28 }}>
               Hoggard High School in the spring of 2026. Its halls, its people, the things we'll forget.
@@ -800,7 +800,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
               position: "relative", padding: "40px 28px 60px", borderRadius: 22,
               background:
                 "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.4), transparent 60%), " +
-                "radial-gradient(ellipse at 80% 80%, rgba(196,106,60,0.12), transparent 60%), " +
+                "radial-gradient(ellipse at 80% 80%, rgba(90,164,223,0.12), transparent 60%), " +
                 "linear-gradient(135deg, #d9c39a 0%, #c8a77a 100%)",
               boxShadow: "inset 0 0 0 1px rgba(28,26,23,0.08), inset 0 0 60px rgba(28,26,23,0.18), 0 24px 48px -16px rgba(28,26,23,0.25)",
             }}>
@@ -887,125 +887,51 @@ p { line-height: 1.65; color: var(--ink-soft); }
 
     /* === page-teachers.jsx === */
 
-    const INTERVIEW_QUESTIONS = [
-      "Do you see yourself still teaching at Hoggard in 10 years? Why or why not?",
-      "What do you think Hoggard will look like in 10 years — physically, culturally, academically?",
-      "What is one thing you hope stays exactly the same about this school?",
-      "What is one thing you hope has changed?",
-      "Do you think the way teachers teach will look different in 10 years? How?",
-      "What is one piece of advice you would give to a Hoggard student watching this in 2035?",
-      "What do you think students today take for granted that they might miss later?",
-    ];
-
     const TEACHERS = [
-      { id: 1, slot: "Faculty A", subject: "English",     date: "April 2026", format: "video",      asked: [0, 2, 3, 5] },
-      { id: 2, slot: "Faculty B", subject: "Mathematics", date: "April 2026", format: "transcript", asked: [1, 4, 5] },
-      { id: 3, slot: "Faculty C", subject: "History",     date: "April 2026", format: "video",      asked: [0, 1, 3, 6] },
-      { id: 4, slot: "Faculty D", subject: "Biology",     date: "April 2026", format: "transcript", asked: [2, 4, 5, 6] },
-      { id: 5, slot: "Faculty E", subject: "Spanish",     date: "April 2026", format: "video",      asked: [0, 5, 6] },
-      { id: 6, slot: "Faculty F", subject: "Art",         date: "April 2026", format: "transcript", asked: [1, 2, 3] },
+      { id: 1, slot: "Faculty A", subject: "English",     tone: "warm" },
+      { id: 2, slot: "Faculty B", subject: "Mathematics", tone: "sage" },
+      { id: 3, slot: "Faculty C", subject: "History",     tone: "sky"  },
+      { id: 4, slot: "Faculty D", subject: "Biology",     tone: "sand" },
+      { id: 5, slot: "Faculty E", subject: "Spanish",     tone: "rose" },
+      { id: 6, slot: "Faculty F", subject: "Art",         tone: "warm" },
     ];
 
     function TeachersPage() {
-      const [selected, setSelected] = React.useState(0);
-      const teacher = TEACHERS[selected];
-      const tones = ["warm", "sage", "sky", "sand", "rose", "warm"];
-
       return (
         <div className="page-enter">
           <div className="shell">
             <PageHeader
               eyebrow="Room 02 · Filmed April 2026"
               title={<span>Teacher <em>interviews</em>.</span>}
-              lede="Six teachers, each asked a few of these questions on camera. We didn't ask everyone everything — these are honest conversations, not a survey."
+              lede="Six teachers, on camera, talking about Hoggard right now — and what they think it'll look like when you're watching this."
             />
 
-            <div className="row-wrap" style={{ marginBottom: 32, gap: 10 }}>
-              {TEACHERS.map((t, i) => (
-                <button
-                  key={t.id}
-                  onClick={() => setSelected(i)}
-                  className={"btn " + (i === selected ? "btn-primary" : "btn-ghost")}
-                  style={{ fontSize: 13, padding: "10px 18px" }}
-                >
-                  {t.slot} · {t.subject}
-                </button>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 60 }} className="teacher-grid-new">
+              {TEACHERS.map((t) => (
+                <div key={t.id} className="glass" style={{ padding: 0, overflow: "hidden" }}>
+                  <div style={{ position: "relative", aspectRatio: "16/9", background: "#000" }}>
+                    <Photo label={`${t.slot.toLowerCase().replace(" ", "-")}-interview.jpg`} ratio="auto" tone={t.tone} style={{ position: "absolute", inset: 0, height: "100%", borderRadius: 0 }} />
+                    <div style={{ position: "absolute", inset: 0, background: "rgba(28,26,23,0.22)" }} />
+                    <button style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 60, height: 60, borderRadius: "50%", background: "rgba(255,255,255,0.88)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.9)", boxShadow: "0 4px 14px rgba(28,26,23,0.3)", color: "var(--ink)", fontSize: 20, cursor: "default", display: "grid", placeItems: "center" }}>▶</button>
+                    <div style={{ position: "absolute", bottom: 12, left: 12, right: 12, padding: "8px 12px", borderRadius: 8, background: "rgba(255,255,255,0.82)", backdropFilter: "blur(16px)", display: "flex", alignItems: "center", gap: 10, fontSize: 11, color: "var(--ink-soft)", fontFamily: "var(--font-mono)" }}>
+                      <span>00:00</span>
+                      <div style={{ flex: 1, height: 2, background: "rgba(28,26,23,0.12)", borderRadius: 1 }} />
+                      <span>—:—</span>
+                    </div>
+                  </div>
+                  <div style={{ padding: "18px 20px 22px" }}>
+                    <div style={{ fontSize: 10, fontFamily: "var(--font-mono)", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent-deep)", marginBottom: 6 }}>{t.subject}</div>
+                    <h3 style={{ fontSize: "1.15rem", fontFamily: "var(--font-serif)", letterSpacing: "-0.015em" }}>{t.slot}</h3>
+                    <div style={{ fontSize: 11.5, color: "var(--ink-mute)", fontFamily: "var(--font-mono)", letterSpacing: "0.04em", marginTop: 5 }}>Interviewed · April 2026</div>
+                  </div>
+                </div>
               ))}
-            </div>
-
-            <div className="glass" style={{ padding: 0, overflow: "hidden", marginBottom: 60 }}>
-              <div style={{ display: "grid", gridTemplateColumns: "minmax(260px, 320px) 2fr" }} className="teacher-grid">
-                <div style={{ borderRight: "1px solid var(--line)", padding: 24, display: "flex", flexDirection: "column", gap: 18, background: "rgba(255,255,255,0.4)" }}>
-                  <Photo label={`${teacher.slot.toLowerCase().replace(' ', '-')}.jpg — portrait`} ratio="4/5" tone={tones[selected]} style={{ width: "100%" }} />
-                  <div>
-                    <div className="eyebrow" style={{ marginBottom: 8 }}>{teacher.subject}</div>
-                    <h2 style={{ fontSize: "1.5rem", letterSpacing: "-0.02em", marginBottom: 10 }}>{teacher.slot}</h2>
-                    <div style={{ fontSize: 12, color: "var(--ink-mute)", fontFamily: "var(--font-mono)", letterSpacing: "0.04em", lineHeight: 1.6 }}>
-                      Interviewed · {teacher.date}<br />
-                      {teacher.asked.length} of 7 questions answered
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ padding: "32px 36px", display: "flex", flexDirection: "column", gap: 22 }}>
-                  {teacher.format === "video" && (
-                    <div className="glass glass-strong" style={{ padding: 0, overflow: "hidden" }}>
-                      <div style={{ position: "relative", aspectRatio: "16/9", background: "#000" }}>
-                        <Photo label={`${teacher.slot.toLowerCase().replace(' ', '-')}-still.jpg`} ratio="auto" tone="warm" style={{ position: "absolute", inset: 0, height: "100%", borderRadius: 0 }} />
-                        <div style={{ position: "absolute", inset: 0, background: "rgba(28,26,23,0.25)" }} />
-                        <button style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 76, height: 76, borderRadius: "50%", background: "rgba(255,255,255,0.85)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.9)", boxShadow: "0 6px 20px rgba(28,26,23,0.3)", color: "var(--ink)", fontSize: 22, cursor: "default", display: "grid", placeItems: "center" }}>▶</button>
-                        <div style={{ position: "absolute", bottom: 12, left: 12, right: 12, padding: "10px 14px", borderRadius: 10, background: "rgba(255,255,255,0.85)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.9)", display: "flex", alignItems: "center", gap: 12, fontSize: 11.5, color: "var(--ink-soft)", fontFamily: "var(--font-mono)" }}>
-                          <span>00:00</span>
-                          <div style={{ flex: 1, height: 2, background: "rgba(28,26,23,0.15)", borderRadius: 1 }}>
-                            <div style={{ width: "0%", height: "100%", background: "var(--accent)", borderRadius: 1 }} />
-                          </div>
-                          <span>—:—</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-                    <Eyebrow>{teacher.format === "video" ? "Transcript excerpt" : "Written Q&A"}</Eyebrow>
-                    {teacher.asked.map((qi) => (
-                      <div key={qi} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                        <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent-deep)", fontWeight: 600, fontFamily: "var(--font-mono)" }}>Q{qi + 1}</div>
-                        <div style={{ fontSize: 15, color: "var(--ink)", lineHeight: 1.45, fontWeight: 500, fontFamily: "var(--font-serif)" }}>{INTERVIEW_QUESTIONS[qi]}</div>
-                        <Slot label={`A · ${teacher.slot}`} hint="Response to be added after interview is transcribed." />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ paddingBottom: 40 }}>
-              <Eyebrow>The seven questions</Eyebrow>
-              <h3 style={{ fontSize: "1.6rem", marginTop: 12, marginBottom: 24, letterSpacing: "-0.02em" }}>
-                Our full list — not every teacher answered every one.
-              </h3>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 14 }}>
-                {INTERVIEW_QUESTIONS.map((q, i) => {
-                  const askedCount = TEACHERS.filter(t => t.asked.includes(i)).length;
-                  return (
-                    <div key={i} className="glass" style={{ padding: "20px 22px" }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10 }}>
-                        <div style={{ fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent-deep)", fontWeight: 600, fontFamily: "var(--font-mono)" }}>Q{i + 1}</div>
-                        <div style={{ fontSize: 10.5, fontFamily: "var(--font-mono)", color: "var(--ink-mute)", letterSpacing: "0.04em" }}>{askedCount}/6 answered</div>
-                      </div>
-                      <div style={{ fontSize: 14.5, lineHeight: 1.5, color: "var(--ink)", fontFamily: "var(--font-serif)" }}>{q}</div>
-                    </div>
-                  );
-                })}
-              </div>
             </div>
           </div>
 
           <style>{`
-            @media (max-width: 880px) {
-              .teacher-grid { grid-template-columns: 1fr !important; }
-              .teacher-grid > div:first-child { border-right: none !important; border-bottom: 1px solid var(--line) !important; }
-            }
+            @media (max-width: 880px) { .teacher-grid-new { grid-template-columns: repeat(2, 1fr) !important; } }
+            @media (max-width: 520px)  { .teacher-grid-new { grid-template-columns: 1fr !important; } }
           `}</style>
 
           <Footer />
@@ -1207,7 +1133,14 @@ p { line-height: 1.65; color: var(--ink-soft); }
               <BigStat value="142"     unit="faculty"  label="Teachers & staff" />
               <BigStat value="1967"    unit="est."     label="Year founded" />
               <BigStat value="Vikings" unit=""         label="Mascot" tone="primary" />
-              <FactCard label="Principal" big="Christopher Madden" sub="Hoggard High School" wide={2} />
+              <div className="glass" style={{ padding: "22px 24px", gridColumn: "span 2", display: "flex", alignItems: "center", gap: 24 }}>
+                <Photo label="madden-portrait.jpg — Principal Christopher Madden" ratio="1/1" tone="sky" style={{ width: 90, height: 90, borderRadius: 14, flexShrink: 0 }} />
+                <div>
+                  <Eyebrow>Principal</Eyebrow>
+                  <div style={{ fontSize: "1.5rem", fontFamily: "var(--font-serif)", fontWeight: 500, letterSpacing: "-0.02em", marginTop: 8, color: "var(--ink)" }}>Christopher Madden</div>
+                  <div style={{ fontSize: 13, color: "var(--ink-mute)", marginTop: 5, fontFamily: "var(--font-mono)", letterSpacing: "0.02em" }}>Hoggard High School · 2025–26</div>
+                </div>
+              </div>
               <FactCard label="School colors" big="Blue & Navy" sub="#5aa4df · #21386c" wide={2}
                 extra={<div style={{ display: "flex", gap: 8, marginTop: 12 }}>
                   <div style={{ width: 28, height: 28, borderRadius: 8, background: "#5aa4df", boxShadow: "0 2px 6px rgba(90,164,223,0.4)" }} />
@@ -1239,7 +1172,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
                 <h3 style={{ fontSize: "1.4rem", marginTop: 8, letterSpacing: "-0.02em" }}>Our full list.</h3>
                 <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {ALL_CLUBS.map(c => (
-                    <span key={c} style={{ padding: "4px 10px", borderRadius: 999, background: "rgba(196,106,60,0.08)", border: "1px solid rgba(196,106,60,0.2)", fontSize: 11.5, color: "var(--accent-deep)" }}>{c}</span>
+                    <span key={c} style={{ padding: "4px 10px", borderRadius: 999, background: "rgba(90,164,223,0.08)", border: "1px solid rgba(90,164,223,0.2)", fontSize: 11.5, color: "var(--accent-deep)" }}>{c}</span>
                   ))}
                 </div>
               </div>
@@ -1439,7 +1372,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
                 </h2>
                 <div style={{ marginTop: 10, fontSize: 14, color: "var(--ink-soft)" }}>Wilmington, North Carolina · 504 graduating seniors</div>
               </div>
-              <div style={{ width: 96, height: 96, borderRadius: "50%", background: "linear-gradient(135deg, var(--accent), var(--accent-deep))", display: "grid", placeItems: "center", color: "#fff", fontFamily: "var(--font-serif)", fontSize: 38, fontWeight: 600, boxShadow: "0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 24px rgba(196,106,60,0.4)", letterSpacing: "-0.02em" }}>'26</div>
+              <div style={{ width: 96, height: 96, borderRadius: "50%", background: "linear-gradient(135deg, var(--accent), var(--accent-deep))", display: "grid", placeItems: "center", color: "#fff", fontFamily: "var(--font-serif)", fontSize: 38, fontWeight: 600, boxShadow: "0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 24px rgba(90,164,223,0.4)", letterSpacing: "-0.02em" }}>'26</div>
             </div>
 
             <SectionLabel n="01" title="Senior superlatives" sub="Voted by the class" />
@@ -1515,37 +1448,24 @@ p { line-height: 1.65; color: var(--ink-soft); }
 
     /* === page-letter.jsx === */
 
+    const LETTERS = [
+      { name: "Greyson Clymer", grade: "Junior", tone: "warm" },
+      { name: "Leah Chitwood",  grade: "Junior", tone: "rose" },
+    ];
+
     function LetterPage() {
-      const LETTERS = [
-        { name: "Greyson Clymer", grade: "Junior",    tone: "warm", featured: true },
-        { name: "Leah Chitwood",  grade: "Junior",    tone: "rose", featured: true },
-        { name: "Anonymous",      grade: "Senior",    tone: "sage" },
-        { name: "Anonymous",      grade: "Senior",    tone: "sand" },
-        { name: "Anonymous",      grade: "Sophomore", tone: "sky"  },
-        { name: "Anonymous",      grade: "Freshman",  tone: "warm" },
-      ];
-
-      const tints = {
-        sage: "linear-gradient(135deg, #f0f4ea 0%, #e3ecd9 100%)",
-        sand: "linear-gradient(135deg, #faf2dc 0%, #f0e3c0 100%)",
-        sky:  "linear-gradient(135deg, #e9f0f6 0%, #d6e2ee 100%)",
-        warm: "linear-gradient(135deg, #faeee0 0%, #f2dcc0 100%)",
-        rose: "linear-gradient(135deg, #f9e6e3 0%, #f0cfc7 100%)",
-      };
-
       return (
         <div className="page-enter">
           <div className="shell-narrow">
             <header style={{ paddingTop: 160, paddingBottom: 40, textAlign: "center" }}>
-              <Eyebrow>Room 06 · Sealed</Eyebrow>
+              <Eyebrow>Room 05 · Sealed</Eyebrow>
               <h1 className="display" style={{ marginTop: 16, fontSize: "clamp(2.6rem, 5vw, 4.5rem)" }}>
                 Letters to <em>whoever</em><br />finds this.
               </h1>
               <p className="lede" style={{ marginTop: 22, maxWidth: 580, marginLeft: "auto", marginRight: "auto" }}>
-                From students who were at Hoggard in the spring of 2026. Some signed,
-                some anonymous. They wrote them knowing you might be the only person who ever reads them.
+                From the creators of this project, for you to read in 2035.
               </p>
-              <div style={{ marginTop: 28, display: "inline-flex", alignItems: "center", gap: 10, padding: "8px 18px", borderRadius: 999, border: "1px solid rgba(196,106,60,0.3)", background: "rgba(196,106,60,0.08)", fontSize: 12, color: "var(--accent-deep)", fontFamily: "var(--font-mono)", letterSpacing: "0.08em" }}>
+              <div style={{ marginTop: 28, display: "inline-flex", alignItems: "center", gap: 10, padding: "8px 18px", borderRadius: 999, border: "1px solid rgba(90,164,223,0.3)", background: "rgba(90,164,223,0.08)", fontSize: 12, color: "var(--accent-deep)", fontFamily: "var(--font-mono)", letterSpacing: "0.08em" }}>
                 <span className="tag-dot" />
                 <span>WRITTEN APRIL 2026 · TO BE READ IN 2035</span>
               </div>
@@ -1553,7 +1473,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
           </div>
 
           <div className="shell-narrow" style={{ paddingTop: 24, paddingBottom: 40, display: "flex", flexDirection: "column", gap: 22 }}>
-            {LETTERS.filter(l => l.featured).map((letter, i) => (
+            {LETTERS.map((letter, i) => (
               <article key={i} className="glass letter-card" style={{ padding: "52px 56px", borderRadius: 22, background: i === 0 ? "var(--glass-fill-strong)" : "var(--glass-fill-tinted)" }}>
                 <div style={{ fontFamily: "var(--font-serif)", fontSize: "1.05rem", lineHeight: 1.8, color: "var(--ink-soft)" }}>
                   <div style={{ fontSize: "1.4rem", fontWeight: 500, marginBottom: 26, color: "var(--ink)", letterSpacing: "-0.01em" }}>Dear reader,</div>
@@ -1569,31 +1489,9 @@ p { line-height: 1.65; color: var(--ink-soft); }
             ))}
           </div>
 
-          <div className="shell" style={{ paddingTop: 60, paddingBottom: 40 }}>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 24, paddingBottom: 14, borderBottom: "1px solid var(--line)" }}>
-              <Eyebrow>And from others</Eyebrow>
-              <span style={{ flex: 1 }} />
-              <span className="muted" style={{ fontFamily: "var(--font-mono)", fontSize: 11.5, letterSpacing: "0.06em" }}>
-                {LETTERS.filter(l => !l.featured).length} more letters
-              </span>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 18 }}>
-              {LETTERS.filter(l => !l.featured).map((letter, i) => (
-                <article key={i} style={{ padding: "28px 30px", borderRadius: 16, background: tints[letter.tone] || tints.warm, border: "1px solid var(--line-strong)", boxShadow: "0 1px 0 rgba(255,255,255,0.7) inset, 0 6px 16px -6px rgba(28,26,23,0.18)", display: "flex", flexDirection: "column", gap: 14, minHeight: 260 }}>
-                  <div style={{ fontFamily: "var(--font-serif)", fontSize: 17, fontWeight: 500, color: "var(--ink)", letterSpacing: "-0.01em" }}>Dear future,</div>
-                  <Slot label={`From a ${letter.grade.toLowerCase()}`} hint="Letter text to be added." style={{ background: "rgba(255,255,255,0.5)" }} />
-                  <div style={{ marginTop: "auto", paddingTop: 12, borderTop: "1px solid rgba(28,26,23,0.08)" }}>
-                    <div style={{ fontFamily: "var(--font-script)", fontSize: 22, color: "var(--ink)", lineHeight: 1 }}>— {letter.name === "Anonymous" ? "Anon" : letter.name.split(" ")[0]}</div>
-                    <div style={{ fontSize: 11, color: "var(--ink-mute)", marginTop: 4, fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}>{letter.name}, {letter.grade}</div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-
           <div className="shell-narrow" style={{ paddingTop: 80, paddingBottom: 60, textAlign: "center" }}>
-            <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 18, padding: "40px 60px", borderRadius: 24, background: "var(--glass-fill-tinted)", border: "1px solid rgba(196,106,60,0.25)", backdropFilter: "blur(20px)", boxShadow: "0 1px 0 rgba(255,255,255,0.7) inset, 0 12px 30px -10px rgba(196,106,60,0.25)" }}>
-              <div style={{ width: 88, height: 88, borderRadius: "50%", background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5), var(--accent) 50%, var(--accent-deep) 90%)", boxShadow: "0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 24px rgba(196,106,60,0.5)", border: "1px solid rgba(255,255,255,0.3)", display: "grid", placeItems: "center", fontFamily: "var(--font-serif)", fontSize: 32, fontWeight: 600, color: "#fff", letterSpacing: "-0.02em" }}>H</div>
+            <div style={{ display: "inline-flex", flexDirection: "column", alignItems: "center", gap: 18, padding: "40px 60px", borderRadius: 24, background: "var(--glass-fill-tinted)", border: "1px solid rgba(90,164,223,0.25)", backdropFilter: "blur(20px)", boxShadow: "0 1px 0 rgba(255,255,255,0.7) inset, 0 12px 30px -10px rgba(90,164,223,0.25)" }}>
+              <div style={{ width: 88, height: 88, borderRadius: "50%", background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5), var(--accent) 50%, var(--accent-deep) 90%)", boxShadow: "0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 24px rgba(90,164,223,0.5)", border: "1px solid rgba(255,255,255,0.3)", display: "grid", placeItems: "center", fontFamily: "var(--font-serif)", fontSize: 32, fontWeight: 600, color: "#fff", letterSpacing: "-0.02em" }}>H</div>
               <div>
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.18em", color: "var(--accent-deep)", textTransform: "uppercase", marginBottom: 8 }}>Sealed April 2026</div>
                 <div style={{ fontSize: "1.6rem", fontFamily: "var(--font-serif)", letterSpacing: "-0.02em", fontWeight: 500 }}>Don't open until 2035.</div>
@@ -1658,7 +1556,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
               background: "linear-gradient(135deg, var(--accent), var(--accent-deep))",
               display: "grid", placeItems: "center",
               fontFamily: "var(--font-serif)", fontSize: 28, fontWeight: 600, color: "#fff",
-              boxShadow: "0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 20px rgba(196,106,60,0.4)",
+              boxShadow: "0 1px 0 rgba(255,255,255,0.4) inset, 0 8px 20px rgba(90,164,223,0.4)",
             }}>H</div>
             <h1 style={{ fontSize: "1.8rem", fontFamily: "var(--font-serif)", letterSpacing: "-0.025em", marginBottom: 8 }}>Hoggard '26</h1>
             <p style={{ fontSize: 14, color: "var(--ink-mute)", marginBottom: 32, fontFamily: "var(--font-mono)", letterSpacing: "0.02em" }}>
@@ -1728,9 +1626,9 @@ p { line-height: 1.65; color: var(--ink-soft); }
         r.style.setProperty("--type-scale", String(t.typeScale));
         const w = t.warmth;
         document.body.style.background = `
-          radial-gradient(ellipse 70% 50% at 15% 5%, rgba(232, 160, 122, ${0.18 * w}), transparent 60%),
-          radial-gradient(ellipse 60% 50% at 90% 25%, rgba(74, 127, 191, ${0.10 * (2 - w)}), transparent 60%),
-          radial-gradient(ellipse 80% 60% at 50% 100%, rgba(196, 106, 60, ${0.10 * w}), transparent 70%),
+          radial-gradient(ellipse 70% 50% at 15% 5%, rgba(90, 164, 223, ${0.15 * w}), transparent 60%),
+          radial-gradient(ellipse 60% 50% at 90% 25%, rgba(33, 56, 108, ${0.10 * (2 - w)}), transparent 60%),
+          radial-gradient(ellipse 80% 60% at 50% 100%, rgba(90, 164, 223, ${0.08 * w}), transparent 70%),
           linear-gradient(180deg, #faf6ee 0%, #f3ece0 60%, #ece4d4 100%)
         `;
         document.body.style.backgroundAttachment = "fixed";
