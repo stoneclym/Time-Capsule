@@ -1179,13 +1179,8 @@ p { line-height: 1.65; color: var(--ink-soft); }
       "Junior Student Council","Freshman Student Council","Senior Student Council",
     ];
 
-    const SPORTS = [
-      "Football","Boys Basketball","Girls Basketball","Boys Soccer","Girls Soccer",
-      "Volleyball","Baseball","Softball","Boys Lacrosse","Girls Lacrosse",
-      "Boys Tennis","Girls Tennis","Swimming & Diving","Track & Field",
-      "Cross Country","Golf","Wrestling","Cheerleading","Dance Team",
-      "Boys Cross Country","Girls Cross Country","Swim & Dive",
-    ];
+    const SPORTS_BOYS  = ["Baseball","Basketball","Cross Country","Football","Golf","Lacrosse","Soccer","Swimming","Tennis","Track & Field","Wrestling"];
+    const SPORTS_GIRLS = ["Basketball","Cross Country","Field Hockey","Flag Football","Golf","Lacrosse","Soccer","Softball","Swimming","Tennis","Track & Field","Volleyball","Wrestling"];
 
     const TOP_TRACKS = [
       { title: "Luther",              artist: "Kendrick Lamar & SZA"  },
@@ -1225,12 +1220,12 @@ p { line-height: 1.65; color: var(--ink-soft); }
             <div className="glass" style={{ padding: "32px 36px", marginBottom: 24 }}>
               <Eyebrow>Course offerings · 2025–26</Eyebrow>
               <div style={{ marginTop: 18, display: "flex", flexWrap: "wrap", gap: 8 }}>
-                {["AP Lit","AP Lang","AP Calc AB","AP Calc BC","AP Bio","AP Chem","AP Physics 1",
-                  "AP US History","AP World","AP Psych","AP Spanish","AP Art History",
-                  "IB Diploma","IB English HL","IB Math AA","IB Bio HL","IB History HL",
-                  "Honors Pre-Calc","Marine Biology","Forensics","Web Design","Digital Photography",
-                  "Ceramics","Theater II","Wind Ensemble","Latin I–III","ASL",
-                  "Personal Finance","Sports Marketing","Culinary Arts",
+                {["AP Calculus AB","AP Calculus BC","AP Statistics","AP US History","AP Government & Politics",
+                  "AP English Language","AP English Literature","AP Biology","AP Chemistry","AP Physics",
+                  "AP Psychology","AP Environmental Science","AP Spanish","AP World History","AP Computer Science",
+                  "IB Diploma Programme","IB English HL","IB Math AA HL","IB Biology HL","IB History HL",
+                  "Marine Biology","Digital Photography","Ceramics","Theater","Wind Ensemble",
+                  "Latin I–IV","ASL","Personal Finance","Culinary Arts","Sports Marketing",
                 ].map(c => (
                   <span key={c} style={{ padding: "6px 12px", borderRadius: 999, background: "rgba(255,255,255,0.6)", border: "1px solid var(--line-strong)", fontSize: 12.5, color: "var(--ink-soft)" }}>{c}</span>
                 ))}
@@ -1250,10 +1245,17 @@ p { line-height: 1.65; color: var(--ink-soft); }
               </div>
               <div className="glass" style={{ padding: "28px 30px" }}>
                 <Eyebrow>Sports teams</Eyebrow>
-                <h3 style={{ fontSize: "1.4rem", marginTop: 8, letterSpacing: "-0.02em" }}>Varsity programs.</h3>
-                <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {SPORTS.map(s => (
-                    <span key={s} style={{ padding: "4px 10px", borderRadius: 999, background: "rgba(74,127,191,0.08)", border: "1px solid rgba(74,127,191,0.22)", fontSize: 11.5, color: "var(--hog-navy)" }}>{s}</span>
+                <h3 style={{ fontSize: "1.4rem", marginTop: 8, letterSpacing: "-0.02em" }}>24 varsity programs.</h3>
+                <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 14 }}>
+                  {[["Boys", SPORTS_BOYS], ["Girls", SPORTS_GIRLS]].map(([label, list]) => (
+                    <div key={label}>
+                      <div style={{ fontSize: 10, fontFamily: "var(--font-mono)", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--hog-navy)", opacity: 0.6, marginBottom: 7 }}>{label}</div>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+                        {list.map(s => (
+                          <span key={s} style={{ padding: "4px 10px", borderRadius: 999, background: "rgba(74,127,191,0.08)", border: "1px solid rgba(74,127,191,0.22)", fontSize: 11.5, color: "var(--hog-navy)" }}>{s}</span>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -1262,7 +1264,20 @@ p { line-height: 1.65; color: var(--ink-soft); }
             <SectionLabel n="03" title="This year, in headlines" />
             <div className="glass" style={{ padding: "32px 36px", marginBottom: 60 }}>
               <Eyebrow>Notable school news · 2025–26</Eyebrow>
-              <Slot label="School news bullets" hint="3–6 items. Things that mattered to students this year — championships, controversies, a teacher who retired, a renovation, the senior prank." style={{ marginTop: 14 }} />
+              <div style={{ marginTop: 18, display: "flex", flexDirection: "column", gap: 0 }}>
+                {[
+                  "Boys soccer won the first state championship in program history, beating West Forsyth 2-0 in November 2025 for the inaugural NCHSAA 8A title. Rings were presented to the team in a ceremony earlier this year.",
+                  "Boys basketball made their first state championship game appearance since 1969-70, beating rival Laney 51-33 in the East Regional finals before falling short of the title.",
+                  "Football went 12-1 and made a deep playoff run, reaching the state semifinals before losing to Millbrook.",
+                  "Girls soccer clinched the conference championship in April 2026 with a 9-0 conference record and 10 shutout victories on the season.",
+                  "ChatGPT and Cool Math Games were blocked on school networks in spring 2026 — students noticed.",
+                ].map((item, i, arr) => (
+                  <div key={i} style={{ display: "flex", gap: 18, padding: "16px 0", borderBottom: i < arr.length - 1 ? "1px solid var(--line)" : "none" }}>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--accent-deep)", letterSpacing: "0.06em", paddingTop: 3, flexShrink: 0, width: 22 }}>{String(i + 1).padStart(2, "0")}</div>
+                    <p style={{ margin: 0, fontSize: 14.5, lineHeight: 1.65 }}>{item}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <SectionLabel n="04" title="The world outside" sub="A snapshot of spring 2026" />
@@ -1308,12 +1323,37 @@ p { line-height: 1.65; color: var(--ink-soft); }
 
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, marginBottom: 60 }} className="two-col">
               <div className="glass" style={{ padding: "28px 32px" }}>
-                <Eyebrow>National headlines</Eyebrow>
-                <Slot label="3–4 headlines from spring 2026" hint="Major news that defines the moment." style={{ marginTop: 12 }} />
+                <Eyebrow>National headlines · spring 2026</Eyebrow>
+                <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 0 }}>
+                  {[
+                    "The U.S. and Israel launched military operations against Iran, with peace talks on hold as of late April — two months into the conflict.",
+                    "An attempted shooting outside the White House Correspondents' Dinner highlighted growing concerns about political violence in the U.S.",
+                    "The Supreme Court issued a ruling that effectively gutted the Voting Rights Act, stripping federal protections for minority voters in a redistricting case.",
+                    "Jerome Powell's final Fed meeting as chair took place this spring, with Kevin Warsh approved by the Senate Banking Committee to replace him.",
+                  ].map((h, i, arr) => (
+                    <div key={i} style={{ display: "flex", gap: 12, padding: "13px 0", borderBottom: i < arr.length - 1 ? "1px solid var(--line)" : "none" }}>
+                      <div style={{ color: "var(--accent)", fontSize: 13, paddingTop: 2, flexShrink: 0 }}>—</div>
+                      <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.6 }}>{h}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="glass" style={{ padding: "28px 32px" }}>
                 <Eyebrow>Around Wilmington</Eyebrow>
-                <Slot label="Local color" hint="What's new in town. Restaurants, beach days, traffic, that one place that closed." style={{ marginTop: 12 }} />
+                <div style={{ marginTop: 14, display: "flex", flexDirection: "column", gap: 0 }}>
+                  {[
+                    "The Cargo District expanded with a shipping container food court — smash burgers, vegan food, sushi, BBQ, and Oaxacan tacos all in one spot.",
+                    "The Sounder opened on Oleander Drive, a new elevated coastal seafood restaurant in the old Hops Supply Co. building.",
+                    "Hollywood East Brewseum is coming to the historic Rose Ice & Coal building on Market Street, celebrating Wilmington's decades of film and TV production.",
+                    "The Brooklyn Arts District became Wilmington's first Social District — grab drinks and walk around on the first and third Saturdays of the month.",
+                    "Wilmington International Airport is moving forward with Phase 2 of its expansion, adding parking facilities expected to wrap up in fall 2026.",
+                  ].map((item, i, arr) => (
+                    <div key={i} style={{ display: "flex", gap: 12, padding: "13px 0", borderBottom: i < arr.length - 1 ? "1px solid var(--line)" : "none" }}>
+                      <div style={{ color: "var(--hog-blue)", fontSize: 13, paddingTop: 2, flexShrink: 0 }}>—</div>
+                      <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.6 }}>{item}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
