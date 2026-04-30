@@ -64,7 +64,7 @@ body {
     radial-gradient(ellipse 70% 50% at 15% 5%, rgba(90, 164, 223, 0.15), transparent 60%),
     radial-gradient(ellipse 60% 50% at 90% 25%, rgba(33, 56, 108, 0.10), transparent 60%),
     radial-gradient(ellipse 80% 60% at 50% 100%, rgba(90, 164, 223, 0.08), transparent 70%),
-    linear-gradient(180deg, #faf6ee 0%, #f3ece0 60%, #ece4d4 100%);
+    linear-gradient(180deg, #ffffff 0%, #f9f9f9 50%, #f4f4f2 100%);
   background-attachment: fixed;
 }
 
@@ -681,12 +681,11 @@ p { line-height: 1.65; color: var(--ink-soft); }
             <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 28, paddingBottom: 14, borderBottom: "1px solid var(--line)" }}>
               <Eyebrow>The five rooms</Eyebrow>
               <span style={{ flex: 1 }} />
-              <span className="muted" style={{ fontFamily: "var(--font-mono)", fontSize: 11.5, letterSpacing: "0.06em" }}>click any door</span>
             </div>
 
             <div className="rooms-grid" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 22 }}>
               {[
-                { id: "voices",   label: "Student Voices",        meta: "17 sticky notes",       tone: "warm", desc: "Anonymous notes, written by hand and posted to a wall. What we wanted you to know.", num: "01", src: "https://res.cloudinary.com/dbc9mudek/image/upload/v1777582649/studentvoices_gwa0sc.jpg" },
+                { id: "voices",   label: "Student Voices",        meta: "47 sticky notes",       tone: "warm", desc: "Anonymous notes, written by hand and posted to a wall. What we wanted you to know.", num: "01", src: "https://res.cloudinary.com/dbc9mudek/image/upload/v1777582649/studentvoices_gwa0sc.jpg" },
                 { id: "teachers", label: "Teacher Interviews",     meta: "6 teachers, on camera", tone: "sage", desc: "Six teachers, on camera, answering a few of the same questions.", num: "02", src: "https://res.cloudinary.com/dbc9mudek/image/upload/v1777582548/teacherinterviews_qfvijs.jpg" },
                 { id: "today",    label: "School Today",           meta: "Photo gallery",          tone: "sky",  desc: "What every hallway, classroom, and corner of the building looks like.", num: "03", src: "https://res.cloudinary.com/dbc9mudek/image/upload/v1777583187/schooltoday_rvgv8d.png" },
                 { id: "numbers",  label: "By the Numbers",         meta: "Stats & culture",        tone: "sand", desc: "Enrollment, gas prices, what's on the radio. The trivia of being alive in 2026.", num: "04", src: "https://res.cloudinary.com/dbc9mudek/image/upload/v1777583186/bythenumbers_rgrbcz.png" },
@@ -1023,6 +1022,11 @@ p { line-height: 1.65; color: var(--ink-soft); }
         return () => window.removeEventListener("keydown", onKey);
       }, [lightbox]);
 
+      React.useEffect(() => {
+        document.body.style.overflow = lightbox !== null ? "hidden" : "";
+        return () => { document.body.style.overflow = ""; };
+      }, [lightbox]);
+
       const sizeStyle = {
         large:  { gridColumn: "span 2", gridRow: "span 2" },
         tall:   { gridColumn: "span 1", gridRow: "span 2" },
@@ -1190,7 +1194,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
                   <div style={{ fontSize: 13, color: "var(--ink-mute)", marginTop: 5, fontFamily: "var(--font-mono)", letterSpacing: "0.02em" }}>Hoggard High School · 2025–26</div>
                 </div>
               </div>
-              <FactCard label="School colors" big="Blue & Navy" sub="#5aa4df · #21386c" wide={2}
+              <FactCard label="School colors" big="Blue & Navy" wide={2}
                 extra={<div style={{ display: "flex", gap: 8, marginTop: 12 }}>
                   <div style={{ width: 28, height: 28, borderRadius: 8, background: "#5aa4df", boxShadow: "0 2px 6px rgba(90,164,223,0.4)" }} />
                   <div style={{ width: 28, height: 28, borderRadius: 8, background: "#21386c", boxShadow: "0 2px 6px rgba(33,56,108,0.4)" }} />
@@ -1327,7 +1331,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
                     "The Cargo District expanded with a shipping container food court — smash burgers, vegan food, sushi, BBQ, and Oaxacan tacos all in one spot.",
                     "The Sounder opened on Oleander Drive, a new elevated coastal seafood restaurant in the old Hops Supply Co. building.",
                     "Hollywood East Brewseum is coming to the historic Rose Ice & Coal building on Market Street, celebrating Wilmington's decades of film and TV production.",
-                    "The Brooklyn Arts District became Wilmington's first Social District — grab drinks and walk around on the first and third Saturdays of the month.",
+                    "The Brooklyn Arts District became Wilmington's first Social District — you can walk around with food and drinks on the first and third Saturdays of the month.",
                     "Wilmington International Airport is moving forward with Phase 2 of its expansion, adding parking facilities expected to wrap up in fall 2026.",
                   ].map((item, i, arr) => (
                     <div key={i} style={{ display: "flex", gap: 12, padding: "13px 0", borderBottom: i < arr.length - 1 ? "1px solid var(--line)" : "none" }}>
@@ -1544,7 +1548,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
               <div>
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.18em", color: "var(--accent-deep)", textTransform: "uppercase", marginBottom: 8 }}>Sealed April 2026</div>
                 <div style={{ fontSize: "1.6rem", fontFamily: "var(--font-serif)", letterSpacing: "-0.02em", fontWeight: 500 }}>Don't open until 2035.</div>
-                <div style={{ fontSize: 13, color: "var(--ink-mute)", marginTop: 10, maxWidth: 380 }}>Delivered to Principal Christopher Madden, Hoggard High School, with one instruction.</div>
+                <div style={{ fontSize: 13, color: "var(--ink-mute)", marginTop: 10, maxWidth: 380 }}>Delivered to the Principal of Hoggard High School, with one instruction.</div>
               </div>
             </div>
           </div>
@@ -1589,7 +1593,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
       };
 
       return (
-        <div style={{ position: "fixed", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(180deg, #faf6ee 0%, #f3ece0 60%, #ece4d4 100%)" }}>
+        <div style={{ position: "fixed", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(180deg, #ffffff 0%, #f9f9f9 50%, #f4f4f2 100%)" }}>
           <div style={{
             padding: "48px 52px", borderRadius: 28, maxWidth: 400, width: "calc(100vw - 48px)",
             background: "rgba(255,255,255,0.7)",
@@ -1678,7 +1682,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
           radial-gradient(ellipse 70% 50% at 15% 5%, rgba(90, 164, 223, ${0.15 * w}), transparent 60%),
           radial-gradient(ellipse 60% 50% at 90% 25%, rgba(33, 56, 108, ${0.10 * (2 - w)}), transparent 60%),
           radial-gradient(ellipse 80% 60% at 50% 100%, rgba(90, 164, 223, ${0.08 * w}), transparent 70%),
-          linear-gradient(180deg, #faf6ee 0%, #f3ece0 60%, #ece4d4 100%)
+          linear-gradient(180deg, #ffffff 0%, #f9f9f9 50%, #f4f4f2 100%)
         `;
         document.body.style.backgroundAttachment = "fixed";
       }, [t.glassBlur, t.typeScale, t.warmth]);
