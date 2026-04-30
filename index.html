@@ -746,15 +746,25 @@ p { line-height: 1.65; color: var(--ink-soft); }
     /* === page-voices.jsx === */
 
     const STUDENT_NOTES = [
-      { id: 1,  grade: "Senior" },    { id: 2,  grade: "Junior" },
-      { id: 3,  grade: "Sophomore" }, { id: 4,  grade: "Senior" },
-      { id: 5,  grade: "Freshman" },  { id: 6,  grade: "Junior" },
-      { id: 7,  grade: "Senior" },    { id: 8,  grade: "Sophomore" },
-      { id: 9,  grade: "Junior" },    { id: 10, grade: "Freshman" },
-      { id: 11, grade: "Senior" },    { id: 12, grade: "Sophomore" },
-      { id: 13, grade: "Junior" },    { id: 14, grade: "Senior" },
-      { id: 15, grade: "Freshman" },  { id: 16, grade: "Junior" },
-      { id: 17, grade: "Sophomore" },
+      { id: 1,  name: "Camille",        grade: "Grade 11", type: "message",    text: "Today I took the ACT as a junior. It was hard. If you are still having to take these tests, know that it is going to be okay. Your hard work and dedication will bring you so much reward. Remember to enjoy your moments in high school while they last. Happy 2036!" },
+      { id: 2,  name: "Ms. Burdette",   grade: "Staff",    type: "message",    text: "To future students, please keep reading and writing on paper. Don't overuse AI and learn another language. Be honest and keep your integrity. Set the bar high." },
+      { id: 3,  name: "Connor W",       grade: "Grade 10", type: "message",    text: "Today was a very bad day — they just blocked Cool Math Games. ChatGPT hasn't taken over the world yet, and we don't know if it will. We have some pretty good sports teams, most go to states." },
+      { id: 4,  name: "Charlotte",      grade: "Grade 10", type: "message",    text: "Is the rock still there and do people still rent it out and paint it? Is there more parking? Ms. Fersinger and Ms. Burdette are the best teachers, take their classes!!" },
+      { id: 5,  name: "Isaac",          grade: "Grade 10", type: "message",    text: "I hope the bathrooms will have floating urinals like Dubai and a super futuristic setup." },
+      { id: 6,  name: "Haley",          grade: "Grade 10", type: "message",    text: "Today ChatGPT and Cool Math were blocked. Hopefully AI doesn't take over." },
+      { id: 7,  name: "Lydia Rowe",     grade: "Grade 10", type: "message",    text: "School today is boring but productive, and our phones have to be put in small holders in some classrooms. I hope the future has burgers and better cookies in the lunchroom, and in spring for the lunchroom to not be SO cold!" },
+      { id: 8,  name: "Celine",         grade: "Grade 10", type: "message",    text: "They blocked ChatGPT and Cool Math Games. Some people are becoming overly reliant on AI and can no longer write without outside help. I hope in the future there will be less competition and more cooperation, and that people can see each other as one race." },
+      { id: 9,  name: "Pedro Delgado",  grade: "Grade 10", type: "message",    text: "School is pretty cool today except Cool Math Games got blocked (3/31/2026). Are we still using Desmos in math class? Hoggard has the best cross country and track team in the county." },
+      { id: 10, name: "Graysen Fisher", grade: "Grade 10", type: "message",    text: "I fear AI is taking us over. School's pretty tough but doable — are there robots yet? Students care about TikTok, Instagram, and Dubai chocolate. Are we still using TI-84 calculators?" },
+      { id: 11, name: "Perry",          grade: "Grade 11", type: "message",    text: "I hope Hoggard is just as collaborative, supportive, and intellectual as it is today. I love our sports culture and going to football games. I hope we still have a Viking mascot." },
+      { id: 12, name: "Eve",            grade: "Grade 11", type: "message",    text: "Whoever is reading this, you are fantastic and I am proud of you." },
+      { id: 13, name: "Ava Jurczak",    grade: "Grade 11", type: "message",    text: "School has been stressful but I have definitely grown as a student. My friends and I are super close — we love to shop and get Bloom energy drinks together. Are phones still allowed?" },
+      { id: 14, name: "Anonymous",      grade: "Grade 10", type: "prediction", text: "Teachers will be replaced by AI." },
+      { id: 15, name: "Mycah",          grade: "Grade 10", type: "prediction", text: "Teachers will be AI and students will no longer think for themselves. Hoggard will be more overcrowded with a biased curriculum." },
+      { id: 16, name: "Pedro Delgado",  grade: "Grade 10", type: "prediction", text: "AI will take over the world and all technology will be illegal because of the ban on thinking machines." },
+      { id: 17, name: "Graysen Fisher", grade: "Grade 10", type: "prediction", text: "We won't be using AI as much, and there will be a new social media app everyone uses. Hopefully the 6/7 meme is gone." },
+      { id: 18, name: "Ava Jurczak",    grade: "Grade 11", type: "prediction", text: "Are phones allowed anymore?" },
+      { id: 19, name: "Ms. Burdette",   grade: "Staff",    type: "prediction", text: "I bet we will have a parking deck." },
     ];
 
     const NOTE_TONES = [
@@ -778,10 +788,10 @@ p { line-height: 1.65; color: var(--ink-soft); }
             <PageHeader
               eyebrow="Room 01 · Submitted spring 2026"
               title={<span>Student <em>voices</em>.</span>}
-              lede="Anonymous notes from Hoggard students, written in April 2026. They wrote them knowing you'd read them."
+              lede="Notes and predictions from Hoggard students and staff, written in April 2026. They wrote them knowing you'd read them."
             />
             <div style={{ display: "flex", gap: 24, alignItems: "center", marginBottom: 24, fontSize: 12.5, color: "var(--ink-mute)", fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}>
-              <span className="tag"><span className="tag-dot" />17 of 17 collected</span>
+              <span className="tag"><span className="tag-dot" />13 messages · 6 predictions</span>
             </div>
           </div>
 
@@ -805,11 +815,23 @@ p { line-height: 1.65; color: var(--ink-soft); }
               }} />
               <div className="notes-grid" style={{ position: "relative", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "44px 32px" }}>
                 {STUDENT_NOTES.map((note, i) => {
-                  const tone = NOTE_TONES[i % NOTE_TONES.length];
+                  const isFirstPrediction = note.type === "prediction" && STUDENT_NOTES[i - 1]?.type === "message";
+                  const tone    = NOTE_TONES[i % NOTE_TONES.length];
                   const rot     = (seeded(i)    - 0.5) * 2 * rotationAmount;
                   const yOffset = (seeded(i, 1) - 0.5) * 30;
                   const xOffset = (seeded(i, 2) - 0.5) * 20;
-                  return <StickyNote key={note.id} note={note} tone={tone} rotation={rot} offset={{ x: xOffset, y: yOffset }} />;
+                  return (
+                    <React.Fragment key={note.id}>
+                      {isFirstPrediction && (
+                        <div style={{ gridColumn: "1 / -1", display: "flex", alignItems: "center", gap: 14, margin: "12px 0 -8px" }}>
+                          <div style={{ flex: 1, height: 1, background: "rgba(28,26,23,0.18)" }} />
+                          <span style={{ fontFamily: "var(--font-mono)", fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(28,26,23,0.5)", fontWeight: 600 }}>✦ Predictions for 2036</span>
+                          <div style={{ flex: 1, height: 1, background: "rgba(28,26,23,0.18)" }} />
+                        </div>
+                      )}
+                      <StickyNote note={note} tone={tone} rotation={rot} offset={{ x: xOffset, y: yOffset }} />
+                    </React.Fragment>
+                  );
                 })}
               </div>
             </div>
@@ -828,6 +850,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
 
     function StickyNote({ note, tone, rotation, offset }) {
       const [hovered, setHovered] = React.useState(false);
+      const isPrediction = note.type === "prediction";
       return (
         <div
           onMouseEnter={() => setHovered(true)}
@@ -844,19 +867,18 @@ p { line-height: 1.65; color: var(--ink-soft); }
               ? "0 28px 50px -10px rgba(28,26,23,0.45), 0 1px 0 rgba(255,255,255,0.5) inset"
               : "0 14px 24px -8px rgba(28,26,23,0.35), 0 1px 0 rgba(255,255,255,0.5) inset",
             borderRadius: 3, padding: "26px 22px 18px", color: tone.ink,
-            minHeight: 200, display: "flex", flexDirection: "column", gap: 10, position: "relative",
+            minHeight: 160, display: "flex", flexDirection: "column", gap: 10, position: "relative",
           }}>
             <div style={{ position: "absolute", top: -10, left: "50%", transform: "translateX(-50%) rotate(-3deg)", width: 64, height: 18, background: tone.tape, backdropFilter: "blur(6px)", border: "1px solid rgba(255,255,255,0.5)", boxShadow: "0 2px 4px rgba(28,26,23,0.15)" }} />
-            <div style={{ fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: tone.ink, opacity: 0.65, fontWeight: 600, fontFamily: "var(--font-mono)" }}>
-              #{String(note.id).padStart(2, "0")} · {note.grade}
+            <div style={{ fontSize: 9.5, letterSpacing: "0.14em", textTransform: "uppercase", color: tone.ink, opacity: 0.6, fontWeight: 600, fontFamily: "var(--font-mono)" }}>
+              {isPrediction ? "✦ prediction" : "→ message"}
             </div>
-            <div style={{ fontFamily: "var(--font-script)", fontSize: 22, lineHeight: 1.3, flex: 1, color: tone.ink }}>
-              <em style={{ opacity: 0.55, fontStyle: "normal", fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.02em" }}>
-                [submission #{note.id} — handwritten response]
-              </em>
+            <div style={{ fontFamily: "var(--font-script)", fontSize: 18, lineHeight: 1.38, flex: 1, color: tone.ink }}>
+              {note.text}
             </div>
-            <div style={{ fontSize: 10.5, fontFamily: "var(--font-mono)", color: tone.ink, opacity: 0.55, letterSpacing: "0.04em", paddingTop: 6, borderTop: "1px solid rgba(28,26,23,0.10)" }}>
-              April 2026
+            <div style={{ paddingTop: 8, borderTop: "1px solid rgba(28,26,23,0.10)", display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
+              <span style={{ fontFamily: "var(--font-script)", fontSize: 14.5, color: tone.ink, opacity: 0.75 }}>— {note.name}, {note.grade}</span>
+              <span style={{ fontSize: 9.5, fontFamily: "var(--font-mono)", color: tone.ink, opacity: 0.45, letterSpacing: "0.04em", flexShrink: 0 }}>Apr 2026</span>
             </div>
           </div>
         </div>
