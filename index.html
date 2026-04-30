@@ -1114,7 +1114,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
     }
 
     function Lightbox({ item, index, total, onClose, onPrev, onNext }) {
-      return (
+      return ReactDOM.createPortal(
         <div role="dialog" onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(28,26,23,0.55)", backdropFilter: "blur(28px) saturate(140%)", display: "flex", alignItems: "center", justifyContent: "center", padding: 32 }}>
           <button onClick={onClose} style={{ position: "absolute", top: 24, right: 24, zIndex: 2, width: 44, height: 44, borderRadius: "50%", background: "rgba(255,255,255,0.85)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.9)", color: "var(--ink)", fontSize: 18, cursor: "default" }}>✕</button>
           <button onClick={(e) => { e.stopPropagation(); onPrev(); }} style={{ position: "absolute", top: "50%", left: 32, transform: "translateY(-50%)", width: 52, height: 52, borderRadius: "50%", background: "rgba(255,255,255,0.85)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.9)", color: "var(--ink)", fontSize: 20, cursor: "default" }}>←</button>
@@ -1133,7 +1133,8 @@ p { line-height: 1.65; color: var(--ink-soft); }
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       );
     }
 
