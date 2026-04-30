@@ -686,11 +686,11 @@ p { line-height: 1.65; color: var(--ink-soft); }
 
             <div className="rooms-grid" style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 22 }}>
               {[
-                { id: "voices",   label: "Student Voices",        meta: "17 sticky notes",       tone: "warm", desc: "Anonymous notes, written by hand and posted to a wall. What we wanted you to know.", num: "01" },
-                { id: "teachers", label: "Teacher Interviews",     meta: "6 teachers, on camera", tone: "sage", desc: "Six teachers, on camera, answering a few of the same questions.", num: "02" },
-                { id: "today",    label: "School Today",           meta: "Photo gallery",          tone: "sky",  desc: "What every hallway, classroom, and corner of the building looks like.", num: "03" },
-                { id: "numbers",  label: "By the Numbers",         meta: "Stats & culture",        tone: "sand", desc: "Enrollment, gas prices, what's on the radio. The trivia of being alive in 2026.", num: "04" },
-                { id: "letter",   label: "Letters to the Future",  meta: "From students like us",  tone: "rose", desc: "Letters written to whoever's reading, by students who were here in 2026.", num: "05" },
+                { id: "voices",   label: "Student Voices",        meta: "17 sticky notes",       tone: "warm", desc: "Anonymous notes, written by hand and posted to a wall. What we wanted you to know.", num: "01", src: "https://res.cloudinary.com/dbc9mudek/image/upload/v1777582649/studentvoices_gwa0sc.jpg" },
+                { id: "teachers", label: "Teacher Interviews",     meta: "6 teachers, on camera", tone: "sage", desc: "Six teachers, on camera, answering a few of the same questions.", num: "02", src: "https://res.cloudinary.com/dbc9mudek/image/upload/v1777582548/teacherinterviews_qfvijs.jpg" },
+                { id: "today",    label: "School Today",           meta: "Photo gallery",          tone: "sky",  desc: "What every hallway, classroom, and corner of the building looks like.", num: "03", src: "https://res.cloudinary.com/dbc9mudek/image/upload/v1777583187/schooltoday_rvgv8d.png" },
+                { id: "numbers",  label: "By the Numbers",         meta: "Stats & culture",        tone: "sand", desc: "Enrollment, gas prices, what's on the radio. The trivia of being alive in 2026.", num: "04", src: "https://res.cloudinary.com/dbc9mudek/image/upload/v1777583186/bythenumbers_rgrbcz.png" },
+                { id: "letter",   label: "Letters to the Future",  meta: "From students like us",  tone: "rose", desc: "Letters written to whoever's reading, by students who were here in 2026.", num: "05", src: "https://res.cloudinary.com/dbc9mudek/image/upload/v1777583186/letterstothefuture.png_kudmtw.jpg" },
               ].map((card, i) => (
                 <button
                   key={card.id}
@@ -701,7 +701,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
                     gridColumn: i < 3 ? "span 2" : (i === 3 ? "2 / span 2" : "4 / span 2"),
                   }}
                 >
-                  <Photo label={`room-${i + 1}.jpg`} ratio="4/3" tone={card.tone} style={{ borderRadius: 0 }} />
+                  <Photo src={card.src} label={card.label} ratio="4/3" tone={card.tone} style={{ borderRadius: 0 }} />
                   <div style={{ padding: "22px 24px 24px" }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, marginBottom: 10 }}>
                       <h3 style={{ fontSize: "1.4rem", fontFamily: "var(--font-serif)", fontWeight: 500, letterSpacing: "-0.015em" }}>{card.label}</h3>
@@ -1054,7 +1054,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
           </div>
 
           <div style={{ position: "relative", margin: "0 0 60px", height: 480, overflow: "hidden" }}>
-            <Photo label="hoggard-aerial.jpg — campus from the south parking lot" ratio="auto" tone="sky" style={{ position: "absolute", inset: 0, height: "100%", borderRadius: 0 }} />
+            <Photo src="https://res.cloudinary.com/dbc9mudek/image/upload/v1777576946/frontandforum_kzojwe.jpg" label="Front and forum" ratio="auto" tone="sky" style={{ position: "absolute", inset: 0, height: "100%", borderRadius: 0 }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(255,246,234,0.95) 0%, rgba(255,246,234,0.5) 50%, transparent 100%)" }} />
             <div className="shell" style={{ position: "relative", height: "100%", display: "flex", alignItems: "center" }}>
               <div style={{ maxWidth: 460 }}>
@@ -1183,7 +1183,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
               <BigStat value="1967"    unit="est."     label="Year founded" />
               <BigStat value="Vikings" unit=""         label="Mascot" tone="primary" />
               <div className="glass" style={{ padding: "22px 24px", gridColumn: "span 2", display: "flex", alignItems: "center", gap: 24 }}>
-                <Photo label="madden-portrait.jpg — Principal Christopher Madden" ratio="1/1" tone="sky" style={{ width: 90, height: 90, borderRadius: 14, flexShrink: 0 }} />
+                <Photo src="https://res.cloudinary.com/dbc9mudek/image/upload/v1777581721/principal_bmnwaq.webp" label="Principal Christopher Madden" ratio="1/1" tone="sky" style={{ width: 90, height: 90, borderRadius: 14, flexShrink: 0 }} />
                 <div>
                   <Eyebrow>Principal</Eyebrow>
                   <div style={{ fontSize: "1.5rem", fontFamily: "var(--font-serif)", fontWeight: 500, letterSpacing: "-0.02em", marginTop: 8, color: "var(--ink)" }}>Christopher Madden</div>
