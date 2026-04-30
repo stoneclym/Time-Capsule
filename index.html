@@ -582,7 +582,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
       );
     }
 
-    function Photo({ label, ratio = "16/9", style, className = "", tone = "warm" }) {
+    function Photo({ label, ratio = "16/9", style, className = "", tone = "warm", src }) {
       const tones = {
         warm: "linear-gradient(135deg, #e8d4ba 0%, #c9a77f 100%)",
         sage: "linear-gradient(135deg, #c8d3bf 0%, #97a98a 100%)",
@@ -590,6 +590,16 @@ p { line-height: 1.65; color: var(--ink-soft); }
         sky:  "linear-gradient(135deg, #c5d3df 0%, #8fa5b8 100%)",
         sand: "linear-gradient(135deg, #efe2c8 0%, #c5b08a 100%)",
       };
+      if (src) {
+        return (
+          <div
+            className={"photo " + className}
+            style={{ aspectRatio: ratio, background: tones[tone] || tones.warm, ...style }}
+          >
+            <img src={src} alt={label} loading="lazy" />
+          </div>
+        );
+      }
       return (
         <div
           className={"photo photo-stripes " + className}
@@ -969,23 +979,34 @@ p { line-height: 1.65; color: var(--ink-soft); }
 
     /* === page-today.jsx === */
 
+    const CLD = "https://res.cloudinary.com/dbc9mudek/image/upload/";
     const GALLERY = [
-      { id: 1,  label: "exterior-front.jpg",   caption: "Front entrance, April 2026",       area: "Exterior",   tone: "warm", size: "large"  },
-      { id: 2,  label: "hallway-east.jpg",      caption: "East hallway between bells",       area: "Hallways",   tone: "sage", size: "tall"   },
-      { id: 3,  label: "cafeteria-lunch.jpg",   caption: "Cafeteria, B lunch",               area: "Cafeteria",  tone: "sand", size: "medium" },
-      { id: 4,  label: "classroom-eng.jpg",     caption: "Mrs. ___'s English room",          area: "Classrooms", tone: "rose", size: "medium" },
-      { id: 5,  label: "gym-empty.jpg",         caption: "Gym between practices",            area: "Gym",        tone: "sky",  size: "wide"   },
-      { id: 6,  label: "lockers-west.jpg",      caption: "West wing lockers",                area: "Hallways",   tone: "warm", size: "medium" },
-      { id: 7,  label: "library-stacks.jpg",    caption: "Library, second floor",            area: "Library",    tone: "sand", size: "tall"   },
-      { id: 8,  label: "courtyard.jpg",         caption: "Senior courtyard, lunch",          area: "Outside",    tone: "sage", size: "medium" },
-      { id: 9,  label: "art-room.jpg",          caption: "Art room, period 4",               area: "Classrooms", tone: "rose", size: "medium" },
-      { id: 10, label: "auditorium.jpg",        caption: "Auditorium stage, dark",           area: "Auditorium", tone: "sky",  size: "wide"   },
-      { id: 11, label: "parking-lot.jpg",       caption: "Student lot, 7:42 AM",             area: "Exterior",   tone: "warm", size: "medium" },
-      { id: 12, label: "stairwell-b.jpg",       caption: "Stairwell B, between floors",      area: "Hallways",   tone: "sage", size: "tall"   },
-      { id: 13, label: "trophy-case.jpg",       caption: "Trophy case by the office",        area: "Exterior",   tone: "sand", size: "medium" },
-      { id: 14, label: "bell-schedule.jpg",     caption: "Bell schedule, room 214",          area: "Detail",     tone: "rose", size: "medium" },
-      { id: 15, label: "science-lab.jpg",       caption: "Science lab, room 118",            area: "Classrooms", tone: "sky",  size: "medium" },
-      { id: 16, label: "music-room.jpg",        caption: "Music room, afternoon practice",   area: "Classrooms", tone: "warm", size: "medium" },
+      { id: 1,  src: CLD+"v1777576930/front_zt4wmj.jpg",                          caption: "School front",                          area: "Exterior",   tone: "warm", size: "large"  },
+      { id: 2,  src: CLD+"v1777576949/entrancesign_bykw2a.jpg",                   caption: "Entrance sign",                         area: "Exterior",   tone: "sand", size: "medium" },
+      { id: 3,  src: CLD+"v1777576936/entrancesign2_uyumwq.jpg",                  caption: "Entrance sign",                         area: "Exterior",   tone: "sky",  size: "medium" },
+      { id: 4,  src: CLD+"v1777576946/frontandforum_kzojwe.jpg",                  caption: "Front and forum",                       area: "Exterior",   tone: "warm", size: "wide"   },
+      { id: 5,  src: CLD+"v1777576946/forumandgym_jnbz8z.jpg",                    caption: "Forum and gym",                         area: "Athletics",  tone: "sky",  size: "wide"   },
+      { id: 6,  src: CLD+"v1777577030/sciencebuilding_qu7bku.jpg",                caption: "Science building",                      area: "Exterior",   tone: "sage", size: "medium" },
+      { id: 7,  src: CLD+"v1777577033/parkinglot1_mncaok.jpg",                    caption: "Student parking lot",                   area: "Exterior",   tone: "sand", size: "wide"   },
+      { id: 8,  src: CLD+"v1777577005/parkinglot2_rb8di5.jpg",                    caption: "Parking lot",                           area: "Exterior",   tone: "warm", size: "medium" },
+      { id: 9,  src: CLD+"v1777577020/parkingcircle_lwgzac.jpg",                  caption: "Parking circle",                        area: "Exterior",   tone: "sky",  size: "medium" },
+      { id: 10, src: CLD+"v1777577023/scottbraswellstadium_qct0ag.jpg",           caption: "Scott Braswell Stadium",                area: "Athletics",  tone: "warm", size: "large"  },
+      { id: 11, src: CLD+"v1777577005/outsideofgym_dslmli.jpg",                   caption: "Outside of gym",                        area: "Athletics",  tone: "sage", size: "medium" },
+      { id: 12, src: CLD+"v1777576985/gymentrance_pjjty2.jpg",                    caption: "Gym entrance",                          area: "Athletics",  tone: "sky",  size: "medium" },
+      { id: 13, src: CLD+"v1777576974/fronthallway_mhmlnc.jpg",                   caption: "Front hallway",                         area: "Hallways",   tone: "warm", size: "wide"   },
+      { id: 14, src: CLD+"v1777577047/upstairsbackbldghallway_l62big.jpg",        caption: "Back building hallway, upstairs",       area: "Hallways",   tone: "sage", size: "tall"   },
+      { id: 15, src: CLD+"v1777577062/viewfromskywalk_v3ebxy.jpg",                caption: "View from the skywalk",                 area: "Hallways",   tone: "sky",  size: "wide"   },
+      { id: 16, src: CLD+"v1777576965/frontoffice_dyoc6x.jpg",                    caption: "Front office",                          area: "Offices",    tone: "sand", size: "medium" },
+      { id: 17, src: CLD+"v1777576978/informationsign_jqu7j7.jpg",                caption: "Information sign",                      area: "Detail",     tone: "warm", size: "medium" },
+      { id: 18, src: CLD+"v1777576985/mrallensroom_wwsf6j.jpg",                   caption: "Mr. Allen's room",                      area: "Classrooms", tone: "warm", size: "wide"   },
+      { id: 19, src: CLD+"v1777577048/puzzleinmrallensroom_odqtwe.jpg",           caption: "Puzzle in Mr. Allen's room",            area: "Classrooms", tone: "sand", size: "medium" },
+      { id: 20, src: CLD+"v1777576978/mrallenspartofthelibrary_vosvzg.jpg",       caption: "Library — Mr. Allen's section",         area: "Library",    tone: "sage", size: "tall"   },
+      { id: 21, src: CLD+"v1777577065/seniorcourtyard_yomdbf.jpg",                caption: "Senior courtyard",                      area: "Outside",    tone: "sage", size: "medium" },
+      { id: 22, src: CLD+"v1777577067/viewofjuniorcourtard_ymy5av.jpg",           caption: "View of junior courtyard",              area: "Outside",    tone: "sky",  size: "wide"   },
+      { id: 23, src: CLD+"v1777577035/rock_foevy8.jpg",                           caption: "The Rock",                              area: "Outside",    tone: "warm", size: "medium" },
+      { id: 24, src: CLD+"v1777576928/cafeteriapatio1_tpdpkx.jpg",                caption: "Cafeteria patio",                       area: "Cafeteria",  tone: "sand", size: "wide"   },
+      { id: 25, src: CLD+"v1777576945/cafteriapatio2_dcnzna.jpg",                 caption: "Cafeteria patio",                       area: "Cafeteria",  tone: "warm", size: "medium" },
+      { id: 26, src: CLD+"v1777576846/behindcafeteria_velivc.jpg",                caption: "Behind the cafeteria",                  area: "Cafeteria",  tone: "sage", size: "tall"   },
     ];
 
     function TodayPage() {
@@ -1055,7 +1076,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
                   className="glass-hover"
                   style={{ ...sizeStyle[g.size], position: "relative", padding: 0, border: "1px solid var(--glass-border)", borderRadius: 14, overflow: "hidden", cursor: "default", background: "transparent" }}
                 >
-                  <Photo label={g.label} ratio="auto" tone={g.tone} style={{ position: "absolute", inset: 0, height: "100%", borderRadius: 0 }} />
+                  <Photo src={g.src} label={g.caption} ratio="auto" tone={g.tone} style={{ position: "absolute", inset: 0, height: "100%", borderRadius: 0 }} />
                   <div className="masonry-overlay" style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 50%, rgba(28,26,23,0.7))", opacity: 0.5, transition: "opacity 0.4s var(--ease)" }} />
                   <div style={{ position: "absolute", left: 14, right: 14, bottom: 12, color: "#fff" }}>
                     <div style={{ fontSize: 9.5, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", fontWeight: 600, marginBottom: 4, fontFamily: "var(--font-mono)" }}>{g.area}</div>
@@ -1096,7 +1117,7 @@ p { line-height: 1.65; color: var(--ink-soft); }
           <button onClick={(e) => { e.stopPropagation(); onNext(); }} style={{ position: "absolute", top: "50%", right: 32, transform: "translateY(-50%)", width: 52, height: 52, borderRadius: "50%", background: "rgba(255,255,255,0.85)", backdropFilter: "blur(20px)", border: "1px solid rgba(255,255,255,0.9)", color: "var(--ink)", fontSize: 20, cursor: "default" }}>→</button>
           <div onClick={(e) => e.stopPropagation()} style={{ maxWidth: 1100, width: "100%", maxHeight: "85vh", display: "flex", flexDirection: "column", gap: 18 }}>
             <div className="glass" style={{ padding: 0, overflow: "hidden", flexShrink: 0 }}>
-              <Photo label={item.label} ratio="16/9" tone={item.tone} style={{ borderRadius: 0 }} />
+              <Photo src={item.src} label={item.caption} ratio="16/9" tone={item.tone} style={{ borderRadius: 0 }} />
             </div>
             <div className="glass glass-tinted" style={{ padding: "18px 24px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
               <div>
