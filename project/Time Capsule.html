@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Hoggard High Time Capsule · 2026 → 2035</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="shared.jsx"></script>
+  <script type="text/babel" src="page-home.jsx"></script>
+  <script type="text/babel" src="page-voices.jsx"></script>
+  <script type="text/babel" src="page-teachers.jsx"></script>
+  <script type="text/babel" src="page-today.jsx"></script>
+  <script type="text/babel" src="page-numbers.jsx"></script>
+  <script type="text/babel" src="page-yearbook.jsx"></script>
+  <script type="text/babel" src="page-letter.jsx"></script>
+
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "glassBlur": 22,
+      "noteRotation": 6,
+      "typeScale": 1,
+      "warmth": 1.05
+    }/*EDITMODE-END*/;
+
+    function App() {
+      const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+      const [page, setPage] = React.useState(() => {
+        const hash = (window.location.hash || "#home").slice(1);
+        return PAGES.find(p => p.id === hash) ? hash : "home";
+      });
+
+      React.useEffect(() => {
+        window.location.hash = page;
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }, [page]);
+
+      React.useEffect(() => {
+        const onHash = () => {
+          const h = (window.location.hash || "#home").slice(1);
+          if (PAGES.find(p => p.id === h)) setPage(h);
+        };
+        window.addEventListener("hashchange", onHash);
+        return () => window.removeEventListener("hashchange", onHash);
+      }, []);
+
+      React.useEffect(() => {
+        const r = document.documentElement;
+        r.style.setProperty("--glass-blur", t.glassBlur + "px");
+        r.style.setProperty("--type-scale", String(t.typeScale));
+
+        const w = t.warmth;
+        document.body.style.background = `
+          radial-gradient(ellipse 70% 50% at 15% 5%, rgba(232, 160, 122, ${0.18 * w}), transparent 60%),
+          radial-gradient(ellipse 60% 50% at 90% 25%, rgba(74, 127, 191, ${0.10 * (2 - w)}), transparent 60%),
+          radial-gradient(ellipse 80% 60% at 50% 100%, rgba(196, 106, 60, ${0.10 * w}), transparent 70%),
+          linear-gradient(180deg, #faf6ee 0%, #f3ece0 60%, #ece4d4 100%)
+        `;
+        document.body.style.backgroundAttachment = "fixed";
+      }, [t.glassBlur, t.typeScale, t.warmth]);
+
+      const renderPage = () => {
+        switch (page) {
+          case "home":     return <HomePage     setPage={setPage} />;
+          case "voices":   return <VoicesPage   rotationAmount={t.noteRotation} />;
+          case "teachers": return <TeachersPage />;
+          case "today":    return <TodayPage    />;
+          case "numbers":  return <NumbersPage  />;
+          case "yearbook": return <YearbookPage />;
+          case "letter":   return <LetterPage   />;
+          default:         return <HomePage     setPage={setPage} />;
+        }
+      };
+
+      return (
+        <>
+          <Nav page={page} setPage={setPage} />
+          <main key={page}>{renderPage()}</main>
+
+          <TweaksPanel title="Tweaks">
+            <TweakSection label="Glass" />
+            <TweakSlider label="Blur" value={t.glassBlur} min={0} max={60} unit="px"
+                         onChange={(v) => setTweak('glassBlur', v)} />
+
+            <TweakSection label="Background warmth" />
+            <TweakSlider label="Warm ↔ Cool" value={t.warmth} min={0.2} max={1.6} step={0.05}
+                         onChange={(v) => setTweak('warmth', v)} />
+
+            <TweakSection label="Sticky notes" />
+            <TweakSlider label="Rotation" value={t.noteRotation} min={0} max={20} unit="°"
+                         onChange={(v) => setTweak('noteRotation', v)} />
+
+            <TweakSection label="Typography" />
+            <TweakSlider label="Type scale" value={t.typeScale} min={0.8} max={1.4} step={0.05}
+                         onChange={(v) => setTweak('typeScale', v)} />
+          </TweaksPanel>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
